@@ -1,24 +1,31 @@
-var Circle = function(x,y,size) {
+var Circle = function(name,x,y,size, fillColor) {
   this.x = x;
   this.y = y;
   this.size = size;
 
-  this.addPosn = function() {
-    console.log(this.x + this.y)
+  this.renderEllipse = function () {
+    fill(fillColor)
+    ellipse(this.x, this.y, this.size, this.size)
   }
+
+  // mouseX, mouseY 
+  // dist()
+  // this.x, this.y
 }
 
-var myCircle = new Circle(5,5,50);
-var myOtherCircle = new Circle(30,2,20);
+var myCircle = new Circle("blue", 50,50,50, 'blue');
+var myOtherCircle = new Circle("red", 200,200,20, 'red');
 
 var myCircles = [myCircle, myOtherCircle];
 
 
 function setup() {
   createCanvas(600, 500);
-  background(153);
 }
 
 function draw() {
-
+  background(153);
+  for (var i = 0; i < myCircles.length; i++) {
+    myCircles[i].renderEllipse()
+  }
 }
