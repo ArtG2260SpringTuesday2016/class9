@@ -10,8 +10,7 @@ var Circle = function(name,x,y,size, fillColor) {
   }
 
   this.distanceToMouse = function() {
-    console.log(this.name)
-    console.log(dist(mouseX, mouseY, this.x, this.y))
+    return dist(mouseX, mouseY, this.x, this.y);
   }
 }
 
@@ -29,6 +28,9 @@ function draw() {
   background(153);
   for (var i = 0; i < myCircles.length; i++) {
     myCircles[i].renderEllipse();
-    myCircles[i].distanceToMouse();
+    if (i > 0) {
+        console.log(myCircles[0].distanceToMouse() < myCircles[1].distanceToMouse());
+    }
+
   }
 }
