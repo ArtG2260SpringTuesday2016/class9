@@ -29,7 +29,11 @@ function draw() {
   for (var i = 0; i < myCircles.length; i++) {
     myCircles[i].renderEllipse();
     if (i > 0) {
-        console.log(myCircles[0].distanceToMouse() < myCircles[1].distanceToMouse());
+        if (myCircles[0].distanceToMouse() < myCircles[1].distanceToMouse()){
+          console.log(myCircles[0].name)
+        } else {
+          console.log(myCircles[1].name)
+        }
     }
 
   }
