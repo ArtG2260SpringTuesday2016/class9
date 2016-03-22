@@ -1,8 +1,7 @@
-var Circle = function(name,x,y,size, fillColor) {
+var Circle = function(x,y,size, fillColor) {
   this.x = x;
   this.y = y;
   this.size = size;
-  this.name = name;
 
   this.renderEllipse = function () {
     fill(fillColor)
@@ -14,14 +13,15 @@ var Circle = function(name,x,y,size, fillColor) {
   }
 }
 
-var myCircle = new Circle("blue", 50,50,50, 'blue');
-var myOtherCircle = new Circle("red", 200,200,20, 'red');
+var myFirstCircle = new Circle(100,100,50, 'blue');
+var mySecondCircle = new Circle(200,200,50, 'red');
+var myThirdCircle = new Circle(300,300,50, 'yellow')
 
-var myCircles = [myCircle, myOtherCircle];
+var myCircles = [myFirstCircle, mySecondCircle, myThirdCircle];
 
 
 function setup() {
-  createCanvas(600, 500);
+  createCanvas(400, 400);
 }
 
 function draw() {
@@ -29,11 +29,22 @@ function draw() {
   for (var i = 0; i < myCircles.length; i++) {
     myCircles[i].renderEllipse();
     if (i > 0) {
-        if (myCircles[0].distanceToMouse() < myCircles[1].distanceToMouse()){
-          console.log(myCircles[0].name)
-        } else {
-          console.log(myCircles[1].name)
+        if (myCircles[0].distanceToMouse() < myCircles[0].size/2){
+          textSize(20);
+          fill('yellow');
+          text("beep",mouseX,mouseY);
         }
+        if (myCircles[1].distanceToMouse() < myCircles[1].size/2){
+          myCircles[1].size--;
+          textSize(20);
+          fill('black');
+          text("Ahhh!",mouseX,mouseY);
+        }
+        if (myCircles[2].distanceToMouse() < myCircles[2].size/2){
+          textSize(20);
+          fill('blue');
+          text("boop",mouseX,mouseY);
+        }  
     }
 
   }
