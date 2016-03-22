@@ -9,6 +9,11 @@ var Circle = function(name,x,y,size, fillColor) {
     ellipse(this.x, this.y, this.size, this.size)
   }
 
+  this.calculateDistance = function (){
+    return dist(mouseX, mouseY, myCircle.x, myCircle.y);
+  }
+  
+  
   // mouseX, mouseY 
   // dist()
   // this.x, this.y
@@ -26,9 +31,9 @@ function draw() {
   
   
   // check if mouse is over circles
-  
+  var distance = myCircle.calculateDistance();
   // get distance between mouse and circle
-  var distance = dist(mouseX, mouseY, myCircle.x, myCircle.y); 
+  // var distance = dist(mouseX, mouseY, myCircle.x, myCircle.y); moved into a new function on it's own
   var fillColor; 
   
   // if the distance is less than the circle's radius you are on top of the circle
