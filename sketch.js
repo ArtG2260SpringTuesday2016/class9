@@ -12,12 +12,20 @@ var Circle = function(name,x,y,size, fillColor) {
   this.distanceToMouse = function() {
     return dist(mouseX, mouseY, this.x, this.y);
   }
+  this.larger= function(posnX,posnY) {
+    if(this.distanceToMouse = 0){
+      return textPlease;
+  
+}}
+
 }
 
 var myCircle = new Circle("blue", 50,50,50, 'blue');
 var myOtherCircle = new Circle("red", 200,200,20, 'red');
 
 var myCircles = [myCircle, myOtherCircle];
+var textPlease = function(){
+  text("ohemgee",50,50)};
 
 
 function setup() {
@@ -28,6 +36,8 @@ function draw() {
   background(153);
   for (var i = 0; i < myCircles.length; i++) {
     myCircles[i].renderEllipse();
+    myCircles[i].larger();
+    
     if (i > 0) {
         if (myCircles[0].distanceToMouse() < myCircles[1].distanceToMouse()){
           console.log(myCircles[0].name)
