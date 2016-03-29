@@ -1,40 +1,57 @@
-var Circle = function(name,x,y,size, fillColor) {
-  this.x = x;
-  this.y = y;
-  this.size = size;
-  this.name = name;
-
-  this.renderEllipse = function () {
-    fill(fillColor)
-    ellipse(this.x, this.y, this.size, this.size)
-  }
-
-  this.distanceToMouse = function() {
-    return dist(mouseX, mouseY, this.x, this.y);
-  }
-}
-
-var myCircle = new Circle("blue", 50,50,50, 'blue');
-var myOtherCircle = new Circle("red", 200,200,20, 'red');
-
-var myCircles = [myCircle, myOtherCircle];
-
+var bubbles = [];
+var r,g,b;
 
 function setup() {
-  createCanvas(600, 500);
+    createCanvas(700,700);
+//    for (var i=0; i<10; 1++){
+//      bubbles[i] = new Bubble(random(0,width),random(0,height));
+//    }
+}
+
+function mousePressed(){
+  bubbles.push(new Bubble(mouseX,mouseY));
+}
+
+function keyPressed(){
+//how to use: https://p5js.org/reference/#/p5/keyPressed
+//splice: 1st argumnet = index; 2nd argument=how many
+//delete last bubble when delete is pressed
+//change background color when enter is pressed
+  if (keyCode===BACKSPACE || keyCode===DELETE){
+//  bubbles.splice(bubbles.length-1,1);
+//  or, use pop, and it will take off the last hting you put down
+    bubbles.pop()
+  } else if (keyCode === ENTER){
+    //background(random(0,255),random(0,255),random(0,255));
+    r=random(255);
+    g=random(255);
+    b=random(255);
+  }
 }
 
 function draw() {
-  background(153);
-  for (var i = 0; i < myCircles.length; i++) {
-    myCircles[i].renderEllipse();
-    if (i > 0) {
-        if (myCircles[0].distanceToMouse() < myCircles[1].distanceToMouse()){
-          console.log(myCircles[0].name)
-        } else {
-          console.log(myCircles[1].name)
-        }
-    }
+    background(r,g,b);
+    for(var i=0; i<bubbles.length; i++){
+      bubbles[i].move();
+      bubbles[i].display();
+   }
+}
 
+//use capital to indicate that it is special
+function Bubble (x,y) {
+//  this.x=random(0,width);
+//  this.y=random(0,height);
+//if you provide an argument for a parameter of a constructor function, you gotta use them!
+    this.x= x;
+    this.y= y;
+    
+  this.display=function(){
+    stroke(200,200,250);
+    fill(150,150,200,50);
+    ellipse(this.x,this.y,36,36);
+  }
+  this.move=function(){
+    this.x = this.x + random(-1,1);
+    this.y = this.y - 0.75;
   }
 }
