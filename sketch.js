@@ -12,7 +12,6 @@ function mousePressed(){
   bubbles.push(new Bubble(mouseX,mouseY));
 }
 
-
 function keyPressed(){
 //how to use: https://p5js.org/reference/#/p5/keyPressed
 //splice: 1st argumnet = index; 2nd argument=how many
@@ -30,6 +29,15 @@ function keyPressed(){
   }
 }
 
+function draw() {
+  background(r,g,b)
+  for(var i=0; i<bubbles.length; i++){
+    bubbles[i].move();
+    bubbles[i].display();
+    bubbles[i].garbage();
+ }
+}
+
 
 //use capital to indicate that it is special
 function Bubble (x,y) {
@@ -38,16 +46,6 @@ function Bubble (x,y) {
 //if you provide an argument for a parameter of a constructor function, you gotta use them!
     this.x= x;
     this.y= y;
-    
-  this.render=function(){
-    background(r,g,b);
-    for(var i=0; i<bubbles.length; i++){
-      bubbles[i].move();
-      bubbles[i].display();
-      bubbles[i].render();
-      bubbles[i].garbage();
-   }
-  }
   
   this.display=function(){
     stroke(200,200,250);
@@ -59,10 +57,10 @@ function Bubble (x,y) {
     this.y = this.y - 0.75;
   }
   
-  this.garbage(){
+  this.garbage=function(){
     for(var i=0; i<bubbles.length; i++){
-      if (Bubble.this.x<10){
-        bubbles.remove(i)
+      if (bubbles[i].y<20){
+        bubbles.splice(i,1)
       }
     }
   }
