@@ -61,7 +61,7 @@ function Bubble (x,y) {
   
   this.garbage(){
     for(var i=0; i<bubbles.length; i++){
-      if (bubbles[i].x<100){
+      if (Bubble.this.x<10){
         bubbles.remove(i)
       }
     }
