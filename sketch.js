@@ -31,13 +31,15 @@ function keyPressed(){
 
 function draw() {
   background(r,g,b)
-  for(var i=0; i<bubbles.length; i++){
-    bubbles[i].move();
-    bubbles[i].display();
-    bubbles[i].garbage();
- }
+//   for(var i=0; i<bubbles.length; i++){
+//     bubbles[i].move();
+//     bubbles[i].display();
+//     bubbles[i].garbage();
+// }
+  for (var i=0; i<bubbles.length; i++){
+    bubbles[i].render(i);
+  }
 }
-
 
 //use capital to indicate that it is special
 function Bubble (x,y) {
@@ -63,5 +65,11 @@ function Bubble (x,y) {
         bubbles.splice(i,1)
       }
     }
+  }
+  
+  this.render=function(){
+    this.move();
+    this.display();
+    this.garbage();
   }
 }
