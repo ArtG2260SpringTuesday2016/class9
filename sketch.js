@@ -12,6 +12,7 @@ function mousePressed(){
   bubbles.push(new Bubble(mouseX,mouseY));
 }
 
+
 function keyPressed(){
 //how to use: https://p5js.org/reference/#/p5/keyPressed
 //splice: 1st argumnet = index; 2nd argument=how many
@@ -29,13 +30,6 @@ function keyPressed(){
   }
 }
 
-function draw() {
-    background(r,g,b);
-    for(var i=0; i<bubbles.length; i++){
-      bubbles[i].move();
-      bubbles[i].display();
-   }
-}
 
 //use capital to indicate that it is special
 function Bubble (x,y) {
@@ -45,6 +39,16 @@ function Bubble (x,y) {
     this.x= x;
     this.y= y;
     
+  this.render=function(){
+    background(r,g,b);
+    for(var i=0; i<bubbles.length; i++){
+      bubbles[i].move();
+      bubbles[i].display();
+      bubbles[i].render();
+      bubbles[i].garbage();
+   }
+  }
+  
   this.display=function(){
     stroke(200,200,250);
     fill(150,150,200,50);
@@ -53,5 +57,13 @@ function Bubble (x,y) {
   this.move=function(){
     this.x = this.x + random(-1,1);
     this.y = this.y - 0.75;
+  }
+  
+  this.garbage(){
+    for(var i=0; i<bubbles.length; i++){
+      if (bubbles[i].x<100){
+        bubbles.remove(i)
+      }
+    }
   }
 }
